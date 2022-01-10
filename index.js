@@ -15,8 +15,12 @@ function init() {
             choices: ['Yes', 'No'],
         }])
         .then((response) => {
-            console.log("...");
+            if (response !== 'No') createManager();
         });
+}
+
+function createManager() {
+    console.log("yerr")
 }
 
 init();
