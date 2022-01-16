@@ -1,9 +1,13 @@
+const generateHTML = require('./src/generateHTML')
+
 const fs = require('fs');
 const inquirer = require('inquirer');
 
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const Manager = require('./lib/Manager');
+
+const teamArray = [];
 
 function init() {
     console.log("")
@@ -27,15 +31,24 @@ function init() {
                 name: 'email',
                 message: "What is the Team Manager's email? ",
             },
+            {
+                type: 'input',
+                name: 'officeNumber',
+                message: "What is the Team Manager's office number? ",
+            },
         ])
-        .then((response) => {
-            if (response) createManager();
+        .then(managerInfo => {
+            const {
+                name,
+                id,
+                email,
+                officeNumber
+            } = managerInfo;
+            const manager = new Manager(name, id, email, officeNumber);
+
+            teamArray.push(manager);
         });
 }
 
-function createManager() {
-    console.log("Creating Manager . . .");
-
-}
 
 init();
