@@ -37,7 +37,7 @@ function init() {
                 message: "What is the Team Manager's office number? ",
             },
         ])
-        .then(managerInfo => {
+        .then((managerInfo) => {
             const {
                 name,
                 id,
@@ -47,6 +47,7 @@ function init() {
             const manager = new Manager(name, id, email, officeNumber);
 
             teamArray.push(manager);
+            addMember();
         });
 };
 
@@ -92,7 +93,7 @@ const addMember = () => {
                 default: false
             }
         ])
-        .then(employeeInfo => {
+        .then((employeeInfo) => {
             // data 
 
             let {
@@ -121,7 +122,7 @@ const addMember = () => {
             if (confirmAddEmployee) {
                 return addEmployee(teamArray);
             } else {
-                return teamArray;
+                return generateHTML(teamArray);
             }
         })
 };
@@ -141,14 +142,4 @@ const writeFile = data => {
     })
 };
 
-init()
-    .then(addMember)
-    .then(teamArray => {
-        return generateHTML(teamArray);
-    })
-    .then(pageHTML => {
-        return writeFile(pageHTML);
-    })
-    .catch(err => {
-        console.log(err);
-    });
+init();
