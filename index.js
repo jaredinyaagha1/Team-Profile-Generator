@@ -47,6 +47,7 @@ function init() {
             const manager = new Manager(name, id, email, officeNumber);
 
             teamArray.push(manager);
+            console.log(manager);
             addMember();
         });
 };
@@ -120,7 +121,7 @@ const addMember = () => {
             teamArray.push(employee);
 
             if (confirmAddEmployee) {
-                return addEmployee(teamArray);
+                return addMember(teamArray);
             } else {
                 return generateHTML(teamArray);
             }
