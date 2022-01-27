@@ -43,6 +43,6 @@ test("able to get email via getEmail()", () => {
 
 test("able to get role via getRole()", () => {
     const testRole = "Employee";
-    const e = new Employee("Boofar", 777, testEmail);
+    const e = new Employee("Boofar", 777, testRole);
     expect(e.email).toBe(testRole);
 });

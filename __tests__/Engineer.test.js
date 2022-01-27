@@ -26,11 +26,11 @@ test("able to set email via constructor argument", () => {
 test("able to get role via getRole()", () => {
     const testRole = "Engineer";
     const e = new Engineer("Boofar", 777, testRole);
-    expect(e.role).toBe(testRole);
+    expect(e.getRole()).toBe(testRole);
 });
 
 test("able to get GitHub via getGitHub()", () => {
     const testGitHub = "https://github.com/jaredinyaagha1";
-    const e = new Engineer("Foofar", 777, testGitHub);
-    expect(e.github).toBe(testGitHub);
+    const e = new Engineer("Foofar", 777, "zimbob@jones.com",testGitHub);
+    expect(e.getGitHub()).toBe(testGitHub);
 });

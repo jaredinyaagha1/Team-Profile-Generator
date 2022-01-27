@@ -144,3 +144,17 @@ const writeFile = data => {
 };
 
 init();
+
+ 
+
+init()
+  .then(addMember)
+  .then(teamArray => {
+    return generateHTML(teamArray);
+  })
+  .then(pageHTML => {
+    return writeFile(pageHTML);
+  })
+  .catch(err => {
+ console.log(err);
+  });

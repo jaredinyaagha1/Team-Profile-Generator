@@ -26,11 +26,11 @@ test("able to set email via constructor argument", () => {
 test("able to get role via getRole()", () => {
     const testRole = "Intern";
     const e = new Intern("Boofar", 777, testRole);
-    expect(e.role).toBe(testRole);
+    expect(e.getRole()).toBe(testRole);
 });
 
 test("able to get School via getSchool()", () => {
     const testSchool = "Georgia Institute of Technology";
-    const e = new Intern("Foofar", 777, testSchool);
-    expect(e.github).toBe(testSchool);
+    const e = new Intern("Foofar", 777, "zimbob@jones.com", testSchool);
+    expect(e.getSchool()).toBe(testSchool);
 });
