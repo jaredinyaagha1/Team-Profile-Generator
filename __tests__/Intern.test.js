@@ -31,6 +31,6 @@ test("able to get role via getRole()", () => {
 
 test("able to get School via getSchool()", () => {
     const testSchool = "Georgia Institute of Technology";
-    const e = new Intern("Foofar", 777, "zimbob@jones.com", testSchool);
+    const e = new Intern("Foofar", 777, "zimbonts@jones.com", testSchool);
     expect(e.getSchool()).toBe(testSchool);
 });

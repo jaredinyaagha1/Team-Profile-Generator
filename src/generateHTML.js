@@ -64,6 +64,7 @@ generateHTML = (data) => {
     for (let i=0; i<data.length; i++) {
         const employee = data[i];
         const role = employee.getRole();
+        console.log(role);
 
         if (role === 'Manager') {
             const managerCard = generateManager(employee);

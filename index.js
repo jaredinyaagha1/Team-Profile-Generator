@@ -15,7 +15,7 @@ function init() {
     console.log("Use `npm run reset` to reset the dist/ folder")
     console.log("")
     console.log("Please build your team!")
-    inquirer
+    return inquirer
         .prompt([{
                 type: 'input',
                 name: 'name',
@@ -48,12 +48,11 @@ function init() {
 
             teamArray.push(manager);
             console.log(manager);
-            addMember();
         });
 };
 
 const addMember = () => {
-    inquirer
+   return inquirer
         .prompt([{
                 type: 'list',
                 name: 'role',
@@ -111,11 +110,11 @@ const addMember = () => {
             if (role === "Engineer") {
                 employee = new Engineer(name, id, email, github);
 
-                console.log(employee);
+                // console.log(employee);
             } else if (role === "Intern") {
                 employee = new Intern(name, id, email, school);
 
-                console.log(employee);
+                // console.log(employee);
             }
 
             teamArray.push(employee);
@@ -123,29 +122,27 @@ const addMember = () => {
             if (confirmAddEmployee) {
                 return addMember(teamArray);
             } else {
-                return generateHTML(teamArray);
+                return teamArray;
             }
         })
 };
 
 
-// function to generate HTML page file using file system 
-const writeFile = data => {
-    fs.writeFile('./dist/index.html', data, err => {
-        // if there is an error 
-        if (err) {
-            console.log(err);
-            return;
-            // when the profile has been created 
-        } else {
-            console.log("Your team profile has been successfully created! Please check out the index.html")
-        }
-    })
-};
+// // function to generate HTML page file using file system 
+// const writeFile = data => {
+//     fs.writeFile('./dist/index.html', data, err => {
+//         // if there is an error 
+//         if (err) {
+//             console.log(err);
+//             return;
+//             // when the profile has been created 
+//         } else {
+//             console.log("Your team profile has been successfully created! Please check out the index.html")
+//         }
+//     })
+// };
 
-init();
-
- 
+// init();
 
 init()
   .then(addMember)
@@ -153,8 +150,13 @@ init()
     return generateHTML(teamArray);
   })
   .then(pageHTML => {
-    return writeFile(pageHTML);
+    return htmlGen(teamArray);
   })
   .catch(err => {
  console.log(err);
   });
+
+function htmlGen(array) {
+    fs.writeFile('./dist/index.html', generateHTML(array), (err) =>
+    err ? console.log(err) : console.log("Your team profile has been successfully created! Please check out the index.html"));
+}
