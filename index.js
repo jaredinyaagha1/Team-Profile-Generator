@@ -17,25 +17,25 @@ function init() {
     console.log("Please build your team!")
     return inquirer
         .prompt([{
-                type: 'input',
-                name: 'name',
-                message: "What is the Team Manager's name? ",
-            },
-            {
-                type: 'input',
-                name: 'id',
-                message: "What is the Team Manager's id? ",
-            },
-            {
-                type: 'input',
-                name: 'email',
-                message: "What is the Team Manager's email? ",
-            },
-            {
-                type: 'input',
-                name: 'officeNumber',
-                message: "What is the Team Manager's office number? ",
-            },
+            type: 'input',
+            name: 'name',
+            message: "What is the Team Manager's name? ",
+        },
+        {
+            type: 'input',
+            name: 'id',
+            message: "What is the Team Manager's id? ",
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: "What is the Team Manager's email? ",
+        },
+        {
+            type: 'input',
+            name: 'officeNumber',
+            message: "What is the Team Manager's office number? ",
+        },
         ])
         .then((managerInfo) => {
             const {
@@ -47,51 +47,51 @@ function init() {
             const manager = new Manager(name, id, email, officeNumber);
 
             teamArray.push(manager);
-            console.log(manager);
+            // console.log(manager);
         });
 };
 
 const addMember = () => {
-   return inquirer
+    return inquirer
         .prompt([{
-                type: 'list',
-                name: 'role',
-                message: "Please choose your employee's role",
-                choices: ['Engineer', 'Intern']
-            },
-            {
-                type: 'input',
-                name: 'name',
-                message: "What is the Employee's name? ",
-            },
-            {
-                type: 'input',
-                name: 'id',
-                message: "What is the Employee's id? ",
-            },
-            {
-                type: 'input',
-                name: 'email',
-                message: "What is the Employee's email? ",
-            },
-            {
-                type: 'input',
-                name: 'github',
-                message: "Please enter the employee's github username.",
-                when: (input) => input.role === "Engineer"
-            },
-            {
-                type: 'input',
-                name: 'school',
-                message: "Please enter the intern's school.",
-                when: (input) => input.role === "Intern"
-            },
-            {
-                type: 'confirm',
-                name: 'confirmAddEmployee',
-                message: "Would you like to add more team members?",
-                default: false
-            }
+            type: 'list',
+            name: 'role',
+            message: "Please choose your next employee's role",
+            choices: ['Engineer', 'Intern']
+        },
+        {
+            type: 'input',
+            name: 'name',
+            message: "What is the Employee's name? ",
+        },
+        {
+            type: 'input',
+            name: 'id',
+            message: "What is the Employee's id? ",
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: "What is the Employee's email? ",
+        },
+        {
+            type: 'input',
+            name: 'github',
+            message: "Please enter the employee's github username.",
+            when: (input) => input.role === "Engineer"
+        },
+        {
+            type: 'input',
+            name: 'school',
+            message: "Please enter the intern's school.",
+            when: (input) => input.role === "Intern"
+        },
+        {
+            type: 'confirm',
+            name: 'confirmAddEmployee',
+            message: "Would you like to add more team members?",
+            default: false
+        }
         ])
         .then((employeeInfo) => {
             // data 
@@ -145,18 +145,18 @@ const addMember = () => {
 // init();
 
 init()
-  .then(addMember)
-  .then(teamArray => {
-    return generateHTML(teamArray);
-  })
-  .then(pageHTML => {
-    return htmlGen(teamArray);
-  })
-  .catch(err => {
- console.log(err);
-  });
+    .then(addMember)
+    .then(teamArray => {
+        return generateHTML(teamArray);
+    })
+    .then(pageHTML => {
+        return htmlGen(teamArray);
+    })
+    .catch(err => {
+        console.log(err);
+    });
 
 function htmlGen(array) {
     fs.writeFile('./dist/index.html', generateHTML(array), (err) =>
-    err ? console.log(err) : console.log("Your team profile has been successfully created! Please check out the index.html"));
+        err ? console.log(err) : console.log("Your team profile has been successfully created! Please check out the index.html"));
 }
